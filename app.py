@@ -1,14 +1,23 @@
 from flask import Flask
 from flask_restful import Resource, Api
 
+from resources.product import Product
+from resources.user import User
+from resources.userList import UserList
+
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://admin:admin@mysql/shop_app_db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['PROPAGATE_EXCEPTIONS'] = True
 api = Api(app)
 
-class HelloWorld(Resource):
-    def get(self):
-        return {'hello': 'world'}
-
-api.add_resource(HelloWorld, '/')
+api.add_resource(User, '/user/<int:id>')
+api.add_resource(UserList, '/userList')
+api.add_resource(Product, '/product')
 
 if __name__ == '__main__':
+    from db import db
+
+    db.init_app(app)
+
     app.run(debug=True, host='0.0.0.0')
