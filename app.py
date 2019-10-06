@@ -4,6 +4,7 @@ from flask_restful import Resource, Api
 from resources.analytics import Analytics
 from resources.product import Product
 from resources.user import User
+from resources.userAnalytics import UserAnalytics
 from resources.userList import UserList
 
 app = Flask(__name__)
@@ -18,6 +19,8 @@ api.add_resource(UserList, '/userList')
 api.add_resource(Product, '/products/search')
 
 api.add_resource(Analytics, '/analytics')
+api.add_resource(UserAnalytics, '/analytics/user/<int:id>')
+
 
 if __name__ == '__main__':
     from db import db
