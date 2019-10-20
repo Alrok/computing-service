@@ -10,3 +10,4 @@ class Products(Index):
     def get_index_name(self):
         return 'products'
 
+

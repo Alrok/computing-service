@@ -28,7 +28,3 @@ class Analytics(Index):
 
     def get_index_name(self):
         return 'analytics'
-
-    def create(self, doc):
-        client = Client()
-        return client.es.index(index=self.get_index_name(), doc_type='_doc', body=doc)

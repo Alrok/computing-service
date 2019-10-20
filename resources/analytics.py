@@ -12,7 +12,7 @@ class Analytics(Resource):
         parameters = parser.parse_args()
         parameters['timestamp'] = datetime.now()
 
-        AnalyticsIndex.instance().create(parameters)
+        AnalyticsIndex.instance().save(parameters)
 
         return {"message": "The event has been saved"}
 

@@ -1,7 +1,8 @@
-from flask import Flask
+from flask import Flask, jsonify
 from flask_restful import Resource, Api
 
 from resources.analytics import Analytics
+from resources.integration import Integration
 from resources.product import Product
 from resources.user import User
 from resources.userAnalytics import UserAnalytics
@@ -21,6 +22,7 @@ api.add_resource(Product, '/products/search')
 api.add_resource(Analytics, '/analytics')
 api.add_resource(UserAnalytics, '/analytics/user/<int:id>')
 
+api.add_resource(Integration, '/integration')
 
 if __name__ == '__main__':
     from db import db

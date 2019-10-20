@@ -3,3 +3,5 @@ flask_restful
 flask_sqlalchemy
 pymysql
 elasticsearch>=6.ç0.0,<7.0.0
+scrapy
+crochet
