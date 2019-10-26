@@ -3,7 +3,7 @@ from es.indices.products import Products
 
 
 class ProductValidationPipeline(object):
-    required_fields = ['sku', 'name', 'offers']
+    required_fields = ['sku', 'name', 'offers', 'image', 'url']
 
     def process_item(self, item, spider):
         self.validate(item)
