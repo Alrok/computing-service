@@ -22,7 +22,7 @@ api.add_resource(Product, '/products/search')
 api.add_resource(Analytics, '/analytics')
 api.add_resource(UserAnalytics, '/analytics/user/<int:id>')
 
-api.add_resource(Integration, '/integration')
+api.add_resource(Integration, '/integrations')
 
 if __name__ == '__main__':
     from db import db

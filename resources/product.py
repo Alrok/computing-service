@@ -17,16 +17,19 @@ class Product(Resource):
         request = json.loads(parameters['request'])
 
         if parameters['userId']:
-            request['sort'] = [self.get_sort_script_for_user(parameters['userId'])]
+            request['sort'] = [self.build_sort_script_for_user(parameters['userId'])]
 
         items = Products.instance().search(json.dumps(request))
 
         return {'items': items}
 
-    def get_sort_script_for_user(self, user_id):
+    def build_sort_script_for_user(self, user_id):
         cluster_user_ids = ClusterAnalysis().get_cluster_user_ids(user_id)
 
-        user_analytics = Analytics.instance().search({'query': {'terms': {'userId': cluster_user_ids}}})
+        try:
+            user_analytics = Analytics.instance().search({'query': {'terms': {'userId': cluster_user_ids}}})
+        except:
+            return {}
 
         product_sort = dict()
         for event in user_analytics:
